@@ -1,3 +1,2 @@
 disnake
 requests
-json
