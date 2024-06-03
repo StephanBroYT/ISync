@@ -93,7 +93,7 @@ class Sync(commands.Cog):
                 errors.append(member.name)
                 continue
 
-            print(f"Информация о {member.name}: {user_data}")
+            # print(f"Информация о {member.name}: {user_data}")
 
             # Синхронизация никнеймов
             if sync_nicknames:
