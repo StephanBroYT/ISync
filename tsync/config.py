@@ -11,7 +11,7 @@ bot = commands.Bot(
     status=disnake.Status.idle
     )
 
-TOKEN = 'MTI0NDU3ODY3MjU5MDA2NTcxNA.GH4xN9.h7kTnNW92juxM_amJOpN0VuOC6gIiB-IRZxhiw'
+TOKEN = ''
 
 OWNERS = [
     986355526948515870,
