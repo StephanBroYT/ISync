@@ -25,5 +25,5 @@ bot.run(config.TOKEN)
 # SETTINGS_FILE = 'role_settings.json'
 # ----
 # ЕЩКЕРЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ
-# MTI0NDU3ODY3MjU5MDA2NTcxNA.GH4xN9.h7kTnNW92juxM_amJOpN0VuOC6gIiB-IRZxhiw (токен бота)
+#  (токен бота)
 # это как заметка просто
