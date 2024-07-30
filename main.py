@@ -4,15 +4,16 @@ bot = config.bot
 
 @bot.event
 async def on_ready():
+    bot.load_extension('cogs.sync')
+    bot.load_extension('cogs.set-role')
+    bot.load_extension('cogs.set-default-role')
+    bot.load_extension('cogs.settings')
+    bot.load_extension('cogs.profile')
+    bot.load_extension('cogs.admin_tools')
     print(f'Бот активирован {bot.user.name} ({bot.user.id})')
     print('  ')
     print('  ')
 
-bot.load_extension('cogs.sync')
-bot.load_extension('cogs.set-role')
-bot.load_extension('cogs.set-default-role')
-bot.load_extension('cogs.settings')
-bot.load_extension('cogs.profile')
 
 
 # Bot creator's -> @Genes1us, @StephanBro_YT
