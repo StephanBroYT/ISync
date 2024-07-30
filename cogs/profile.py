@@ -8,12 +8,6 @@ from config import OWNERS
 API_URL = 'https://api.inless.ru/player/'
 SETTINGS_FILE = 'role_settings.json'
 
-def load_settings(filename=SETTINGS_FILE):
-    try:
-        with open(filename, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
 
 
 class Profile(commands.Cog):
@@ -50,7 +44,7 @@ class Profile(commands.Cog):
             colour=disnake.Color.green(),
             title=nickname,
             description=f'Никнейм: {nickname}\n Здоровье: {health}\n Время в игре: {total_time}\n Есть ли прайм?: {has_prime}\n UUID: {uuid}\n Discord ID: {discord_id}'
-        ).set_thumbnail(url=f"https://vzge.me/bust/256/{nickname}"))
+        ).set_thumbnail(url=f"https://vzge.me/bust/256/{nickname}"), ephemeral=True)
 
         
         

@@ -10,6 +10,7 @@ async def on_ready():
     bot.load_extension('cogs.settings')
     bot.load_extension('cogs.profile')
     bot.load_extension('cogs.admin_tools')
+    bot.load_extension('cogs.server')
     print(f'Бот активирован {bot.user.name} ({bot.user.id})')
     print('  ')
     print('  ')
