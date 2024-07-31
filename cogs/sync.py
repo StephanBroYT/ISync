@@ -10,7 +10,7 @@ SETTINGS_FILE = 'role_settings.json'
 
 def load_settings(filename=SETTINGS_FILE):
     try:
-        with open(filename, 'r') as f:
+        with open(filename, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
         return {}
@@ -117,11 +117,31 @@ class Sync(commands.Cog):
                     badges = badges.split(",") if badges else []
 
                 badges = [badge.strip() for badge in badges]
+                # print(badges)
+                #TEST-------------
+                for i in range(len(badges)):
+                    if badges[i] == 'vicep':
+                        badges[i] = 'Администратор'
+                    if badges[i] == 'banker':
+                        badges[i] = 'Банкир'
+                    if badges[i] == 'president':
+                        badges[i] = 'Президент'
+                    if badges[i] == 'judge':
+                        badges[i] = 'Судья'
+                    if badges[i] == 'preministr':
+                        badges[i] = 'Премьер министр'
+                    if badges[i] == 'builder':
+                        badges[i] = 'Министерство Инфраструктуры'
 
+
+                # Удаляем все вхождения 'sub+'
+                badges = [item for item in badges if item != 'sub+']
+                # print(badges)
+                #--------------------------------------------------------
                 if banned:
                     badges.append("Забанен")
                 if has_prime:
-                    badges.append("prime")
+                    badges.append("Прайм")
 
                 valid_roles = set()
                 roles_to_assign = set()
@@ -263,7 +283,7 @@ class Sync(commands.Cog):
             if banned:
                 badges.append("Забанен")
             if has_prime:
-                badges.append("prime")
+                badges.append("Прайм")
 
             valid_roles = set()
             roles_to_assign = set()

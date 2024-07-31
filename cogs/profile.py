@@ -29,6 +29,8 @@ class Profile(commands.Cog):
         except Exception as e:
             await inter.response.send_message(f"Ошибка {e}")
                 
+        badges = user_data.get('badges')        
+        joined = user_data.get('joined')
         nickname = user_data.get('nickname')
         health = user_data.get('health')
         total_time = user_data.get('total_time')
@@ -36,14 +38,14 @@ class Profile(commands.Cog):
         uuid = user_data.get('uuid')
         discord_id = user_data.get('discord_id')
 
-        if has_prime == True:
+        if has_prime == 'true':
             has_prime = "Да"
         else:
             has_prime = "Нет"
         await inter.response.send_message(embed=disnake.Embed(
-            colour=disnake.Color.green(),
+            colour=disnake.Color.purple(),
             title=nickname,
-            description=f'Никнейм: {nickname}\n Здоровье: {health}\n Время в игре: {total_time}\n Есть ли прайм?: {has_prime}\n UUID: {uuid}\n Discord ID: {discord_id}'
+            description=f'Никнейм: {nickname}\n Здоровье: {health}\n Время в игре: {total_time}\n Есть ли прайм?: {has_prime}\n UUID: {uuid}\n Discord ID: {discord_id}\n Роли: {badges}\n Впервые зашел: {joined}'
         ).set_thumbnail(url=f"https://vzge.me/bust/256/{nickname}"), ephemeral=True)
 
         

@@ -6,12 +6,12 @@ from config import OWNERS
 SETTINGS_FILE = 'role_settings.json'
 
 def save_settings(settings, filename=SETTINGS_FILE):
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='utf-8') as f:
         json.dump(settings, f, ensure_ascii=False, indent=4)
 
 def load_settings(filename=SETTINGS_FILE):
     try:
-        with open(filename, 'r') as f:
+        with open(filename, 'r', encoding='utf-8') as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
