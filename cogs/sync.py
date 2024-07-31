@@ -8,6 +8,21 @@ from config import OWNERS
 API_URL = 'https://api.inless.ru/player/'
 SETTINGS_FILE = 'role_settings.json'
 
+badge_value = {
+    'vicep': 'Администратор',
+    'banker': 'Банкир',
+    'president': 'Президент',
+    'judge': 'Судья',
+    'preministr': 'Премьер министр',
+    'builder': 'Министерство Инфраструктуры',
+    'moderator': 'Модератор',
+    'helper': 'Хелпер',
+    'mvd': 'МВД',
+    'police': 'Гвардия',
+    'mineco': 'Министерство экономики',
+    'culture': 'Министерство культуры'
+}
+
 def load_settings(filename=SETTINGS_FILE):
     try:
         with open(filename, 'r', encoding='utf-8') as f:
@@ -119,29 +134,45 @@ class Sync(commands.Cog):
                 badges = [badge.strip() for badge in badges]
                 # print(badges)
                 #TEST-------------
-                for i in range(len(badges)):
-                    if badges[i] == 'vicep':
-                        badges[i] = 'Администратор'
-                    if badges[i] == 'banker':
-                        badges[i] = 'Банкир'
-                    if badges[i] == 'president':
-                        badges[i] = 'Президент'
-                    if badges[i] == 'judge':
-                        badges[i] = 'Судья'
-                    if badges[i] == 'preministr':
-                        badges[i] = 'Премьер министр'
-                    if badges[i] == 'builder':
-                        badges[i] = 'Министерство Инфраструктуры'
-
-
+                badges_rename = [badge_value.get(badge, badge) for badge in badges]
+                # for i in range(len(badges)):
+                #     if badges[i] == 'vicep':
+                #         badges[i] = 'Администратор'
+                #     if badges[i] == 'banker':
+                #         badges[i] = 'Банкир'
+                #     if badges[i] == 'president':
+                #         badges[i] = 'Президент'
+                #     if badges[i] == 'judge':
+                #         badges[i] = 'Судья'
+                #     if badges[i] == 'preministr':
+                #         badges[i] = 'Премьер министр'
+                #     if badges[i] == 'builder':
+                #         badges[i] = 'Министерство Инфраструктуры'
+                        
+                #     if badges[i] == 'moderator':
+                #         badges[i] = 'Модератор'
+                #     if badges[i] == 'helper':
+                #         badges[i] = 'Хелпер'
+                #     if badges[i] == 'mvd':
+                #         badges[i] = 'МВД'
+                #     if badges[i] == 'police':
+                #         badges[i] = 'Гвардия'
+                #     if badges[i] == 'mineco':
+                #         badges[i] = 'Министерство экономики'
+                #     if badges[i] == 'culture':
+                #         badges[i] = 'Министерство культуры'
+                
                 # Удаляем все вхождения 'sub+'
-                badges = [item for item in badges if item != 'sub+']
+                badges_rename = [item for item in badges_rename if item != 'sub+']
                 # print(badges)
                 #--------------------------------------------------------
+                # if banned: Значение banned нету в апи (сервер инцест говно)
+                #     badges_rename.append("Забанен")
+
                 if banned:
-                    badges.append("Забанен")
+                    badges_rename.append("Забанен")
                 if has_prime:
-                    badges.append("Прайм")
+                    badges_rename.append("Прайм")
 
                 valid_roles = set()
                 roles_to_assign = set()
@@ -153,7 +184,7 @@ class Sync(commands.Cog):
                     role = inter.guild.get_role(role_id)
                     if role:
                         valid_roles.add(role)
-                        if api_badge == 'default' or api_badge in badges:
+                        if api_badge == 'default' or api_badge in badges_rename:
                             roles_to_assign.add(role)
 
                 # Добавление недостающих ролей
